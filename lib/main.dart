@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: SafeArea(
         child: Scaffold(
-          body: const MainWidget(),
+          body: MainWidget(),
         ),
       ),
     );
@@ -40,9 +40,8 @@ class MainWidget extends StatefulWidget {
 }
 
 class _MainWidgetState extends State<MainWidget> {
-  CheckUserConnection _checkUserConnection = CheckUserConnection();
-  InternetDialogHandler _internetDialogHandler = InternetDialogHandler();
-  InternetDialogHandler2 _internetDialogHandler2 = InternetDialogHandler2();
+  final CheckUserConnection _checkUserConnection = CheckUserConnection();
+  final MyInternetDialogHandler _myInternetDialogHandler = MyInternetDialogHandler();
   bool? _internetAvailable;
   String name = "";
   String age = "";
@@ -77,7 +76,7 @@ class _MainWidgetState extends State<MainWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/main.jpg"),
             fit: BoxFit.cover)),
@@ -88,7 +87,7 @@ class _MainWidgetState extends State<MainWidget> {
               GradientButton(label: "Работа с изображениями", onTap: ()
                   {Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ImageWidget()),
+                  MaterialPageRoute(builder: (context) => const ImageWidget()),
                   );
                   }
               ),
@@ -123,10 +122,10 @@ class _MainWidgetState extends State<MainWidget> {
                 if (_internetAvailable!)
                 {
                   checkNet();
-                  _internetDialogHandler2.showInternetDialog(context);
+                  _myInternetDialogHandler.showInternetDialog(context, "С вашим Интернет-соединением всё в порядке");
                 } else {
                   checkNet();
-                  _internetDialogHandler.showInternetDialog(context);
+                  _myInternetDialogHandler.showInternetDialog(context, "Проверьте своё Интернет-соединение");
                 }
               }
               ),

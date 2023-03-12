@@ -44,7 +44,7 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
           backgroundColor: Colors.yellow
       ),
     );
@@ -52,13 +52,13 @@ class CustomText extends StatelessWidget {
 }
 
 
-//Сообщение об отсутствии доступа в Интернет
-class InternetDialogHandler {
-  showInternetDialog(BuildContext context) {
+//Сообщение о доступе в Интернет
+class MyInternetDialogHandler {
+  showInternetDialog(BuildContext context, String text) {
     // set up the button
     Widget okButton = Center(
       child: TextButton(
-        child: Text("OK"),
+        child: const Text("OK"),
         onPressed: () {
           Navigator.of(context).pop(); // dismiss dialog
         },
@@ -67,39 +67,7 @@ class InternetDialogHandler {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      content: Text("Проверьте своё Интернет-соединение"),
-      actions: [
-        okButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
-}
-
-
-//Сообщение о наличии доступа в Интернет
-class InternetDialogHandler2 {
-  showInternetDialog(BuildContext context) {
-    // set up the button
-    Widget okButton = Center(
-      child: TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      ),
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      content: Text("С вашим Интернет-соединением всё в порядке"),
+      content: Text(text),
       actions: [
         okButton,
       ],
